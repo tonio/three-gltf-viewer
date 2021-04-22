@@ -154,6 +154,12 @@ class App {
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  const filename = 'assets/01.gltf'
   const app = new App(document.body, location);
+  fetch(filename)
+    .then(r => r.blob())
+    .then(blob => new File([blob], '01.gltf'))
+    .then(file => new Map([[filename, file]]))
+    .then(map => app.load(map))
 
 });
